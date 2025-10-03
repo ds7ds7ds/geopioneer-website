@@ -214,10 +214,12 @@ const AboutPage = () => {
             Contact us today for a free consultation and site assessment
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3">
-              <Phone className="h-5 w-5 mr-2" />
-              Call (555) 123-4567
-            </Button>
+            <a href="tel:+15551234567">
+              <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 font-bold">
+                <Phone className="h-5 w-5 mr-2" />
+                Call (555) 123-4567
+              </Button>
+            </a>
             <Button size="lg" variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-3">
               Request Consultation
             </Button>

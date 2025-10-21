@@ -2,41 +2,66 @@ import React from 'react'
 import { Button } from '@/components/ui/button.jsx'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card.jsx'
 import { Badge } from '@/components/ui/badge.jsx'
-import { CheckCircle, Users, Award, MapPin, Phone } from 'lucide-react'
+import { CheckCircle, Users, Award, MapPin, Phone, Shield, FileCheck } from 'lucide-react'
 
 const AboutPage = () => {
   const teamMembers = [
     {
-      name: "John Smith",
-      title: "Founder & CEO",
-      experience: "15+ years in geothermal",
-      certifications: ["IGSHPA Certified", "Mass Licensed"]
+      name: "Managing Director",
+      title: "Engineering Leadership",
+      experience: "Master's Degree in Engineering, Certified Designer and Installer for Ground Source Heat Pumps (IGSHPA)",
+      description: "With over 15 years of specialized experience in geothermal systems, our managing director leads the technical team with expertise in complex system design and installation management. This engineering background ensures every project meets the highest technical standards while maximizing efficiency and performance.",
+      certifications: ["IGSHPA Designer", "IGSHPA Installer", "Master's Engineering", "Mass Licensed"]
     },
     {
-      name: "Sarah Johnson",
-      title: "Lead Engineer",
-      experience: "12+ years HVAC design",
-      certifications: ["PE License", "LEED AP"]
+      name: "Operations Executive",
+      title: "Project Management", 
+      experience: "More than half a decade of operations experience with effective project management and support from start to finish",
+      description: "Our operations executive brings comprehensive project management expertise to every GeoPioneer installation. This dedication to seamless operations and customer satisfaction has established strong relationships throughout New England, ensuring projects are completed on time, within budget, and to the highest quality standards.",
+      certifications: ["Project Management Professional", "Customer Relations Certified", "Operations Management"]
     },
     {
-      name: "Mike Chen",
-      title: "Installation Manager",
-      experience: "10+ years drilling",
-      certifications: ["Drilling Certified", "Safety Trained"]
+      name: "Installation Manager",
+      title: "Field Operations",
+      experience: "10+ years drilling and installation expertise",
+      description: "Our installation manager oversees all field operations with extensive experience in Massachusetts' unique geological conditions. This expertise in compact drilling techniques and system installation ensures minimal property disruption while maintaining the highest safety and quality standards.",
+      certifications: ["Drilling Certified", "Safety Trained", "Equipment Specialist"]
     }
   ]
 
-  const certifications = [
-    "IGSHPA Certified Installer",
-    "Massachusetts Licensed Contractor",
-    "EPA Certified Technicians",
-    "OSHA Safety Certified",
-    "Better Business Bureau A+ Rating"
+  const licenses = [
+    {
+      category: "Professional Licenses",
+      items: [
+        "Electrical License - Massachusetts",
+        "HIC Registration - Home Improvement Contractor",
+        "Drilling Licenses - Geothermal Boring",
+        "HVAC Contractor License"
+      ]
+    },
+    {
+      category: "Technical Certifications", 
+      items: [
+        "IGSHPA Designer Certification",
+        "IGSHPA Installer Certification", 
+        "EPA Section 608 Certified Technicians",
+        "OSHA 30-Hour Safety Certification"
+      ]
+    },
+    {
+      category: "Program Partnerships",
+      items: [
+        "MassSave Partner (Pending Approval)",
+        "Mass Climate Bank ESHLP Approved",
+        "Better Business Bureau A+ Rating",
+        "Manufacturer Certified Installer"
+      ]
+    }
   ]
 
   const serviceAreas = [
     "Greater Boston",
-    "MetroWest",
+    "MetroWest", 
     "North Shore",
     "South Shore",
     "Central Massachusetts",
@@ -86,6 +111,10 @@ const AboutPage = () => {
                   <CheckCircle className="h-5 w-5 text-green-600" />
                   <span className="text-gray-700">Licensed and insured in Massachusetts</span>
                 </div>
+                <div className="flex items-center space-x-3">
+                  <CheckCircle className="h-5 w-5 text-green-600" />
+                  <span className="text-gray-700">IGSHPA certified professionals</span>
+                </div>
               </div>
             </div>
             <div className="bg-blue-50 rounded-lg p-8">
@@ -110,13 +139,13 @@ const AboutPage = () => {
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Expert Team</h2>
             <p className="text-lg text-gray-600">
-              Certified professionals with decades of combined experience
+              Certified professionals with decades of combined experience serving New England
             </p>
           </div>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid lg:grid-cols-3 gap-8">
             {teamMembers.map((member, index) => (
-              <Card key={index} className="text-center hover:shadow-lg transition-shadow">
-                <CardHeader>
+              <Card key={index} className="hover:shadow-lg transition-shadow h-full">
+                <CardHeader className="text-center">
                   <div className="w-20 h-20 bg-blue-100 rounded-full mx-auto mb-4 flex items-center justify-center">
                     <Users className="h-10 w-10 text-blue-600" />
                   </div>
@@ -125,11 +154,12 @@ const AboutPage = () => {
                     {member.title}
                   </CardDescription>
                 </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600 mb-4">{member.experience}</p>
+                <CardContent className="flex-1 flex flex-col">
+                  <p className="text-sm font-semibold text-gray-800 mb-3">{member.experience}</p>
+                  <p className="text-gray-600 mb-4 flex-1">{member.description}</p>
                   <div className="space-y-1">
                     {member.certifications.map((cert, idx) => (
-                      <Badge key={idx} variant="secondary" className="text-xs">
+                      <Badge key={idx} variant="secondary" className="text-xs mr-1 mb-1">
                         {cert}
                       </Badge>
                     ))}
@@ -141,21 +171,54 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* Certifications Section */}
+      {/* Licenses & Certifications Section */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12">
-            <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Certifications & Credentials</h2>
-              <div className="space-y-3">
-                {certifications.map((cert, index) => (
-                  <div key={index} className="flex items-center space-x-3">
-                    <Award className="h-5 w-5 text-blue-600" />
-                    <span className="text-gray-700">{cert}</span>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <Shield className="h-8 w-8 text-blue-600 inline-block mr-3" />
+              Licenses & Certifications
+            </h2>
+            <p className="text-lg text-gray-600">
+              Fully licensed, insured, and certified for your peace of mind
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            {licenses.map((category, index) => (
+              <Card key={index} className="hover:shadow-lg transition-shadow">
+                <CardHeader className="text-center">
+                  <FileCheck className="h-12 w-12 text-blue-600 mx-auto mb-3" />
+                  <CardTitle className="text-lg text-blue-600">{category.category}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3">
+                    {category.items.map((item, idx) => (
+                      <div key={idx} className="flex items-start space-x-3">
+                        <Award className="h-4 w-4 text-green-600 mt-1 flex-shrink-0" />
+                        <span className="text-gray-700 text-sm">{item}</span>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-            </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+          
+          <div className="mt-8 p-6 bg-blue-50 rounded-lg text-center">
+            <h3 className="text-xl font-bold text-gray-900 mb-3">Trust & Reliability</h3>
+            <p className="text-gray-600">
+              All our technicians are background-checked, fully insured, and maintain current certifications. 
+              We carry comprehensive liability insurance and provide warranties on all installations.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Service Areas Section */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12">
             <div>
               <h2 className="text-3xl font-bold text-gray-900 mb-6">Service Areas</h2>
               <div className="grid grid-cols-2 gap-3">
@@ -171,6 +234,32 @@ const AboutPage = () => {
                   <strong>Note:</strong> We provide free site assessments throughout our service area. 
                   Contact us to confirm coverage for your specific location.
                 </p>
+              </div>
+            </div>
+            <div className="bg-white rounded-lg p-6 shadow-sm">
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">Why Choose GeoPioneer?</h3>
+              <div className="space-y-4">
+                <div className="flex items-start space-x-3">
+                  <CheckCircle className="h-5 w-5 text-green-600 mt-1" />
+                  <div>
+                    <p className="font-semibold text-gray-900">Local Expertise</p>
+                    <p className="text-gray-600 text-sm">Deep understanding of Massachusetts regulations and geology</p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <CheckCircle className="h-5 w-5 text-green-600 mt-1" />
+                  <div>
+                    <p className="font-semibold text-gray-900">Minimal Disruption</p>
+                    <p className="text-gray-600 text-sm">Compact drilling equipment protects your landscaping</p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <CheckCircle className="h-5 w-5 text-green-600 mt-1" />
+                  <div>
+                    <p className="font-semibold text-gray-900">Complete Service</p>
+                    <p className="text-gray-600 text-sm">From design to installation to ongoing maintenance</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -214,10 +303,10 @@ const AboutPage = () => {
             Contact us today for a free consultation and site assessment
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="tel:+15551234567">
+            <a href="tel:+17816545879">
               <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 font-bold">
                 <Phone className="h-5 w-5 mr-2" />
-                Call (555) 123-4567
+                Call (781) 654-5879
               </Button>
             </a>
             <Button size="lg" variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-3">
